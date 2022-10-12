@@ -1,0 +1,68 @@
+version: '4'
+services:
+
+  # container app
+  app:
+    build:
+      args:
+        user: jf
+        uid: 1000
+      context: ./
+      dockerfile: Dockerfile
+    image: imagen_gaia
+    container_name: contenedor_gaia
+    restart: unless-stopped
+    tty: true
+    ports:
+      - 81:80
+    working_dir: /var/www/html/gaia
+    volumes:
+      - "./gaia:/var/www/html/gaia"
+      - "./config/000-default.conf:/etc/apache2/sites-available/000-default.conf"
+      - "/etc/timezone:/etc/timezone:ro"
+      - "/etc/localtime:/etc/localtime:ro"
+    networks:
+      red_docker:
+
+#   frontend:
+#     image: node:16-bullseye
+#     container_name: contenedor_frontend
+#     restart: unless-stopped
+#     tty: true
+#     ports: 
+#       - 8080:8080
+#     user: ${UID}:${UID}
+#     working_dir: /home/node/app
+#     volumes:
+#       - ./frontend:/home/node/app
+#     environment:
+#       NODE_ENV: development
+# #    command: "npm install"
+# #    command: "npm run serve"
+#     networks:
+#       red_docker:
+
+# container bd
+  db:
+    image: mariadb:10.6
+    container_name: container-bd_gaia
+    restart: unless-stopped
+    tty: true
+    ports:
+      - 3306:3306
+    volumes:
+      - "/etc/timezone:/etc/timezone:ro"
+      - "/etc/localtime:/etc/localtime"
+    # - "./data:/var/lib/mysql"
+    environment:
+      MYSQL_DATABASE: db
+      MYSQL_ROOT_PASSWORD: passoword
+      SERVICE_TAGS: container-bd_gaia
+      SERVICE_NAME: mysql
+    networks:
+      red_docker:
+
+# config network
+networks:
+  red_docker:
+    external: true
