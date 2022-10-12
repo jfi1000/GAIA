@@ -24,23 +24,19 @@ services:
     networks:
       red_docker:
 
-#   frontend:
-#     image: node:16-bullseye
-#     container_name: contenedor_frontend
-#     restart: unless-stopped
-#     tty: true
-#     ports: 
-#       - 8080:8080
-#     user: ${UID}:${UID}
-#     working_dir: /home/node/app
-#     volumes:
-#       - ./frontend:/home/node/app
-#     environment:
-#       NODE_ENV: development
-# #    command: "npm install"
-# #    command: "npm run serve"
-#     networks:
-#       red_docker:
+  # frontend:
+  #   image: node:16-bullseye
+  #   container_name: contenedor_frontend
+  #   restart: unless-stopped
+  #   tty: true
+  #   user: ${UID}:${UID}
+  #   working_dir: /gaia
+  #   volumes:
+  #     - ./gaia:/gaia
+  #   environment:
+  #     NODE_ENV: development
+  #   networks:
+  #     red_docker:
 
 # container bd
   db:

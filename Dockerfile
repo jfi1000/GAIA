@@ -14,7 +14,7 @@ RUN apt-get update && apt-get install -y \
  zip \
  unzip
 # Using Debian, as root
-RUN curl -fsSL https://deb.nodesource.com/setup_12.x | bash -
+RUN curl -fsSL https://deb.nodesource.com/setup_16.x | bash -
 RUN apt-get install -y nodejs
 # Install PHP extensions
 RUN docker-php-ext-install pdo_mysql mbstring bcmath gd zip
