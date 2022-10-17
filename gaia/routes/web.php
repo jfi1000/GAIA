@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
+//Route::get('/client', [App\Http\Controllers\Api\v1\ClientController::class, 'index'])->name('client');
 
 Route::get('/', function () {
     return view('welcome');

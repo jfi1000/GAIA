@@ -15,7 +15,7 @@ class ClientController extends Controller
      */
     public function index()
     {
-        //
+        return response()->json(Client::paginate());
     }
 
     /**
@@ -26,7 +26,9 @@ class ClientController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $client = Client::create($request->all());
+        return response()->json($client,201);
+
     }
 
     /**
