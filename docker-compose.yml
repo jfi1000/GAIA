@@ -51,7 +51,7 @@ services:
       - "/etc/localtime:/etc/localtime"
     # - "./data:/var/lib/mysql"
     environment:
-      MYSQL_DATABASE: db
+      MYSQL_DATABASE: gaia
       MYSQL_ROOT_PASSWORD: passoword
       SERVICE_TAGS: container-bd_gaia
       SERVICE_NAME: mysql
