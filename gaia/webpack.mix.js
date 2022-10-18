@@ -11,6 +11,14 @@ const mix = require('laravel-mix');
  |
  */
 
-mix.js('resources/js/app.js', 'public/js')
+ mix.js('resources/js/app.js', 'public/js')
     .vue()
     .sass('resources/sass/app.scss', 'public/css');
+// if (mix.inProduction()) {
+//     mix.js('resources/js/app.js', 'public/js/app.min.js');
+//     mix.sass('resources/sass/app.scss', 'public/css/app.min.css');
+//     mix.version();
+// } else {
+//     mix.js('resources/js/app.js', 'public/js/app.js');
+//     mix.sass('resources/sass/app.scss', 'public/css');
+// }
