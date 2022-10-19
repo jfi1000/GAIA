@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers\Api\v1;
-
+use App\Http\Resources\ClientResource;
 use App\Models\Client;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
@@ -37,9 +37,10 @@ class ClientController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Client $client)
     {
-        //
+        return response()->json($client);
+
     }
 
     /**
@@ -49,9 +50,10 @@ class ClientController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request,Client $client)
     {
-        //
+        $client->update($request->all());//actualizamos
+        return response()->json($client);//retornamos el nuevo registro
     }
 
     /**
@@ -60,8 +62,9 @@ class ClientController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Client $client)
     {
-        //
+        $client->delete();
+        return response()->json(null, 204);
     }
 }
