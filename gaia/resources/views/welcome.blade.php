@@ -16,9 +16,7 @@
     </head>
     <body class="antialiased">
         <div class="conteiner">
-            <div id="app">
-
-            </div>
+          <p>welcome</p>
         </div>
                
 

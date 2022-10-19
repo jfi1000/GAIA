@@ -13,7 +13,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 //Route::get('/client', [App\Http\Controllers\Api\v1\ClientController::class, 'index'])->name('client');
-
+Route::get('/ruta_pruebas', function () {
+    return view('index_gaia');
+});
 Route::get('/', function () {
     return view('welcome');
 });
