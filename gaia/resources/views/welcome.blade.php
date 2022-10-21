@@ -19,6 +19,15 @@
           <p>welcome</p>
         </div>
                
+        @hasanyrole('Administrador|Administrador')
+        <h2>I am either a writer or an admin or both!</h2>
+        @endhasanyrole
+
+        @role('Administrador')
+            Soy un administrador
+        @else
+            No soy un administrador
+        @endrole
 
                
         
