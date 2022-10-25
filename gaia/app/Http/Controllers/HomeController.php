@@ -25,4 +25,8 @@ class HomeController extends Controller
     {
         return view('home');
     }
+    public function pruebas()
+    {
+        return view('index_gaia');
+    }
 }
