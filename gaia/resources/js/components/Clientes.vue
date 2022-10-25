@@ -1,131 +1,114 @@
 <template>
-    <v-data-table
-      :headers="headers"
-      :items="desserts"
-      class="elevation-1"
-    >
-      <template v-slot:item.calories="{ item }">
-        <v-chip
-          :color="getColor(item.calories)"
-          dark
-        >
-          {{ item.calories }}
-        </v-chip>
-      </template>
-    </v-data-table>
+    <v-container>
+        <v-row>
+          <v-col cols="12" md="12">
+            <v-row>
+                <v-col cols="10" md="10">
+                    <h3 class="titulo">Clientes</h3>
+                </v-col>
+                <v-col cols="2" md="2">
+                    <v-dialog
+                        v-model="dialog"
+                        persistent
+                        max-width="600px"
+                        >
+                        <template v-slot:activator="{ on, attrs }">
+                            <v-btn
+                            dark
+                            v-bind="attrs"
+                            v-on="on"
+                            class="mx-2"
+                            fab
+                            color="indigo"
+                            >
+                            <v-icon dark>
+                            {{mdiPlus}}
+                            </v-icon>
+                            </v-btn>
+                        </template>
+                        <NuevoCliente @dialog="modalclose"></NuevoCliente>
+                    </v-dialog>
+                    <br>
+                </v-col>
+            </v-row>
+        <hr>
+        <br>
+        </v-col>
+          <v-card>
+             <v-card-title>
+             <v-text-field
+                 v-model="search"
+                 label="Buscar"
+                 single-line
+                 hide-details
+             ></v-text-field>
+             </v-card-title>
+             <v-data-table
+             :headers="headers"
+             :items="clientes"
+             class="elevation-1"
+             :search="search"
+             :items-per-page="10"
+             >
+             <template v-slot:item.id="{ item }">
+                 <v-chip
+                 :color="getColor(item.id)"
+                 dark
+                 >
+                 {{ item.id }}
+                 </v-chip>
+             </template>
+             </v-data-table>
+         </v-card>
+        </v-row>
+
+    
+  <v-row justify="center">
+    
+  </v-row>
+    </v-container>
   </template>
   <script>
+  import NuevoCliente from "./NuevoCliente";
+  import {
+    mdiMagnify, mdiPlus
+    }
+  from "@mdi/js";
    const axios = require('axios');
   export default {
     data () {
       return {
+        dialog: false,
+        mdiMagnify: mdiMagnify,
+        mdiPlus: mdiPlus,
+        search: '',
         headers: [
           {
-            text: 'Dessert (100g serving)',
+            text: 'ID',
             align: 'start',
             sortable: false,
-            value: 'name',
+            value: 'id',
           },
-          { text: 'Calories', value: 'calories' },
-          { text: 'Fat (g)', value: 'fat' },
-          { text: 'Carbs (g)', value: 'carbs' },
-          { text: 'Protein (g)', value: 'protein' },
-          { text: 'Iron (%)', value: 'iron' },
-        ],
-        desserts: [
-          {
-            name: 'Frozen Yogurt',
-            calories: 159,
-            fat: 6.0,
-            carbs: 24,
-            protein: 4.0,
-            iron: '1%',
-          },
-          {
-            name: 'Ice cream sandwich',
-            calories: 237,
-            fat: 9.0,
-            carbs: 37,
-            protein: 4.3,
-            iron: '1%',
-          },
-          {
-            name: 'Eclair',
-            calories: 262,
-            fat: 16.0,
-            carbs: 23,
-            protein: 6.0,
-            iron: '7%',
-          },
-          {
-            name: 'Cupcake',
-            calories: 305,
-            fat: 3.7,
-            carbs: 67,
-            protein: 4.3,
-            iron: '8%',
-          },
-          {
-            name: 'Gingerbread',
-            calories: 356,
-            fat: 16.0,
-            carbs: 49,
-            protein: 3.9,
-            iron: '16%',
-          },
-          {
-            name: 'Jelly bean',
-            calories: 375,
-            fat: 0.0,
-            carbs: 94,
-            protein: 0.0,
-            iron: '0%',
-          },
-          {
-            name: 'Lollipop',
-            calories: 392,
-            fat: 0.2,
-            carbs: 98,
-            protein: 0,
-            iron: '2%',
-          },
-          {
-            name: 'Honeycomb',
-            calories: 408,
-            fat: 3.2,
-            carbs: 87,
-            protein: 6.5,
-            iron: '45%',
-          },
-          {
-            name: 'Donut',
-            calories: 452,
-            fat: 25.0,
-            carbs: 51,
-            protein: 4.9,
-            iron: '22%',
-          },
-          {
-            name: 'KitKat',
-            calories: 518,
-            fat: 26.0,
-            carbs: 65,
-            protein: 7,
-            iron: '6%',
-          },
-        ],
+          { text: 'Nombre', value: 'name' },
+          { text: 'Primer apellido', value: 'firstname' },
+          { text: 'Segundo apellido', value: 'lastname' },
+          { text: 'Movil', value: 'movil' }
+        ],  
         clientes:[]
       }
+    },
+    components: { 
+            NuevoCliente
     },
     mounted(){
         this.getClientes();
         console.log('clientes mounted');
     },
     methods: {
-      getColor (calories) {
-        if (calories > 400) return 'red'
-        else if (calories > 200) return 'orange'
-        else return 'green'
+      getColor (id) {
+        // if (id > 400) return 'red'
+        // else if (calories > 200) return 'orange'else 
+         return 'green'
       },
       getClientes(){
         console.log("entra a getclientes");
@@ -143,6 +126,9 @@
                     //  this.comandancias = this.comandancias.data
                    
                 });
+      },
+      modalclose(x){
+        this.dialog=x;
       },
     },
   }

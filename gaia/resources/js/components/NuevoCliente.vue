@@ -1,5 +1,11 @@
 <template>
-    <v-form v-model="valid">
+   
+
+    <v-card>
+        <v-card-title>
+          <span class="text-h5">Registrar nuevo cliente</span>
+        </v-card-title>
+        <v-card-text>
       <v-container>
         <v-row>
           <v-col
@@ -7,7 +13,7 @@
             md="4"
           >
             <v-text-field
-              v-model="nombre"
+              v-model="name"
               :rules="nameRules"
               :counter="10"
               label="Nombre"
@@ -20,7 +26,7 @@
             md="4"
           >
             <v-text-field
-              v-model="primer_ap"
+              v-model="firstname"
               :rules="nameRules"
               :counter="10"
               label="Primer Apellido"
@@ -32,7 +38,7 @@
             md="4"
           >
             <v-text-field
-              v-model="segundo_ap"
+              v-model="lastname"
               :rules="nameRules"
               :counter="10"
               label="Segundo Apellido"
@@ -61,18 +67,48 @@
               required
             ></v-text-field>
           </v-col>
+          <v-col
+            cols="12"
+            md="4"
+          >
+            <v-text-field
+              v-model="movil"
+              label="Movil"
+              required
+            ></v-text-field>
+          </v-col>
         </v-row>
       </v-container>
-    </v-form>
+          <small>*indicates required field</small>
+        </v-card-text>
+        <v-card-actions>
+          <v-spacer></v-spacer>
+          <v-btn
+            color="blue darken-1"
+            text
+            @click="cerrar()"
+          >
+            Cerrar
+          </v-btn>
+          <v-btn
+            color="blue darken-1"
+            text
+            @click="dialog = false"
+          >
+            Guardar
+          </v-btn>
+        </v-card-actions>
+      </v-card>
   </template>
   <script>
   export default {
     data: () => ({
       valid: false,
-      nombre: '',
-      primer_ap: '',
-      segundo_ap: '',
+      name: '',
+      firstname: '',
+      lastname: '',
       rfc: '',
+      movil: '',
       nameRules: [
         v => !!v || 'Name is required',
         v => v.length <= 10 || 'Name must be less than 10 characters',
@@ -83,5 +119,10 @@
         v => /.+@.+/.test(v) || 'E-mail must be valid',
       ],
     }),
+    methods:{
+        cerrar(){
+            this.$emit("dialog",false)
+        }
+    }
   }
 </script>
