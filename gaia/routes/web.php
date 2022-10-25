@@ -18,6 +18,7 @@ use App\Http\Controllers\RoleController;
 //     return view('index_gaia');
 // });
 
+Route::post('/user', [App\Http\Controllers\UserController::class, 'store'])->name('user');
 
 Route::group(['middleware' => 'role:Administrador'], function () {
 
