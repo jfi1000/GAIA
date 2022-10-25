@@ -23,3 +23,5 @@ class RoleSeeder extends Seeder
 
     }
 }
+// "access_token": "1|kC3uP4yExXqza9d3PUFZJgbhacTBhDhXbBIxHMGv",
+// "token_type": "Bearer"

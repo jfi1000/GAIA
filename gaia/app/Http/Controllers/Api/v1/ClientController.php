@@ -13,6 +13,13 @@ class ClientController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function __construct()
+    {
+        //auth por rol example
+    // $this->middleware('role:Administrador')->only('index');
+
+    }
+
     public function index()
     {
         return response()->json(Client::all());
@@ -26,8 +33,13 @@ class ClientController extends Controller
      */
     public function store(Request $request)
     {
+
         $client = Client::create($request->all());
         return response()->json($client,201);
+
+
+        // $client = Client::create($request->all());
+        // return response()->json($client,201);
 
     }
 

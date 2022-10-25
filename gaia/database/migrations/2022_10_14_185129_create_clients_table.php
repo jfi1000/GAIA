@@ -19,8 +19,10 @@ class CreateClientsTable extends Migration
             $table->string('firstname');
             $table->string('lastname');
             $table->string('RFC');
+            $table->string('email');
             $table->string('movil');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 
