@@ -14,9 +14,9 @@ use App\Http\Controllers\RoleController;
 |
 */
 //Route::get('/client', [App\Http\Controllers\Api\v1\ClientController::class, 'index'])->name('client');
-Route::get('/ruta_pruebas', function () {
-    return view('index_gaia');
-});
+// Route::get('/ruta_pruebas', function () {
+//     return view('index_gaia');
+// });
 
 
 Route::group(['middleware' => 'role:Administrador'], function () {
@@ -30,4 +30,5 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/ruta_pruebas', [App\Http\Controllers\HomeController::class, 'pruebas'])->name('pruebas');
 
