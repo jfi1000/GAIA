@@ -37,6 +37,9 @@ class DatabaseSeeder extends Seeder
 
         
         \App\Models\Client::factory(30)->create();
+        $this->call([
+            ResiduoTipoSeeder::class
+        ]);
 
 
     }
