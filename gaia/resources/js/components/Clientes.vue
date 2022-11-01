@@ -26,7 +26,7 @@
                             </v-icon>
                             </v-btn>
                         </template>
-                        <NuevoCliente @dialog="modalclose"></NuevoCliente>
+                        <NuevoCliente @dialog="modalclose" :datosCliente="datosCliente"></NuevoCliente>
                     </v-dialog>
                     <br>
                 </v-col>
@@ -50,13 +50,23 @@
              :search="search"
              :items-per-page="10"
              >
-             <template v-slot:item.id="{ item }">
+             <!-- <template v-slot:item.id="{ item }">
                  <v-chip
                  :color="getColor(item.id)"
                  dark
                  >
                  {{ item.id }}
                  </v-chip>
+             </template> -->
+             <template v-slot:item.id="{ item }">
+                <v-btn
+                icon
+                color="pink"
+                @click="editClient(item.id)"
+                >
+                <v-icon>{{mdiPencil}}</v-icon>
+                </v-btn>
+        
              </template>
              </v-data-table>
          </v-card>
@@ -71,28 +81,31 @@
   <script>
   import NuevoCliente from "./NuevoCliente";
   import {
-    mdiMagnify, mdiPlus
+    mdiMagnify, mdiPlus, mdiPencil
     }
   from "@mdi/js";
    const axios = require('axios');
   export default {
     data () {
       return {
+        id_editar:'',
         dialog: false,
         mdiMagnify: mdiMagnify,
+        mdiPencil: mdiPencil,
         mdiPlus: mdiPlus,
         search: '',
         headers: [
           {
-            text: 'ID',
+            text: 'Nombre',
             align: 'start',
             sortable: false,
-            value: 'id',
+            value: 'name',
           },
-          { text: 'Nombre', value: 'name' },
           { text: 'Primer apellido', value: 'firstname' },
           { text: 'Segundo apellido', value: 'lastname' },
-          { text: 'Movil', value: 'movil' }
+          { text: 'Movil', value: 'movil' },
+          { text: 'Acciones', value: 'id' },
+          
         ],  
         clientes:[]
       }
@@ -128,8 +141,33 @@
                 });
       },
       modalclose(x){
+        // this.datosCliente='0';
         this.dialog=x;
+        // this.getClientes();
       },
-    },
+      editClient(id){
+        
+         axios
+               .request({
+                   url: 'api/client/'+ id,
+                   method: 'get',
+                 baseURL: localStorage.getItem('baseURL'),
+                   headers: {
+                       'Authorization': 'Bearer '+localStorage.getItem('access_token')
+                   },
+                 }).then(response => {
+                   this.enviarDatos(response.data);
+                 });
+     },
+       enviarDatos(res){
+         console.log(res);
+         console.log("response cliente");
+         this.datosCliente=res;
+                    if (this.datosCliente!='0') {
+                        this.dialog=true;
+                    }
+                console.log("datoscliente"+this.datosCliente);
+      }
+     },
   }
 </script>

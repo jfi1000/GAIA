@@ -3,7 +3,7 @@
 
     <v-card>
         <v-card-title>
-          <span class="text-h5">Registrar nuevo cliente</span>
+          <span class="text-h5">{{tituloModal}}</span>
         </v-card-title>
         <v-card-text>
       <v-container>
@@ -13,9 +13,8 @@
             md="4"
           >
             <v-text-field
-              v-model="name"
+              v-model="cliente.name"
               :rules="nameRules"
-              :counter="10"
               label="Nombre"
               required
             ></v-text-field>
@@ -26,9 +25,8 @@
             md="4"
           >
             <v-text-field
-              v-model="firstname"
+              v-model="cliente.firstname"
               :rules="nameRules"
-              :counter="10"
               label="Primer Apellido"
               required
             ></v-text-field>
@@ -38,9 +36,8 @@
             md="4"
           >
             <v-text-field
-              v-model="lastname"
+              v-model="cliente.lastname"
               :rules="nameRules"
-              :counter="10"
               label="Segundo Apellido"
               required
             ></v-text-field>
@@ -51,7 +48,7 @@
             md="4"
           >
             <v-text-field
-              v-model="email"
+              v-model="cliente.email"
               :rules="emailRules"
               label="E-mail"
               required
@@ -62,7 +59,7 @@
             md="4"
           >
             <v-text-field
-              v-model="rfc"
+              v-model="cliente.RFC"
               label="RFC"
               required
             ></v-text-field>
@@ -72,7 +69,7 @@
             md="4"
           >
             <v-text-field
-              v-model="movil"
+              v-model="cliente.movil"
               label="Movil"
               required
             ></v-text-field>
@@ -93,7 +90,7 @@
           <v-btn
             color="blue darken-1"
             text
-            @click="dialog = false"
+            @click="guardarCliente()"
           >
             Guardar
           </v-btn>
@@ -103,26 +100,96 @@
   <script>
   export default {
     data: () => ({
+        tituloModal:'Registrar cliente',
       valid: false,
-      name: '',
-      firstname: '',
-      lastname: '',
-      rfc: '',
-      movil: '',
+      cliente:{
+          name: '',
+          firstname: '',
+          lastname: '',
+          RFC: '',
+          movil: '',
+          email:''
+
+      },
+      edit:false,
       nameRules: [
         v => !!v || 'Name is required',
-        v => v.length <= 10 || 'Name must be less than 10 characters',
+        v => v.length <= 50 || 'Name must be less than 50 characters',
       ],
-      email: '',
       emailRules: [
         v => !!v || 'E-mail is required',
         v => /.+@.+/.test(v) || 'E-mail must be valid',
       ],
     }),
+    mounted(){
+        this.checkEditCliente();
+    },
+    props:{
+        id_editar:{
+            required: false
+        }
+    },
     methods:{
         cerrar(){
             this.$emit("dialog",false)
+        },
+        guardarCliente(){
+            axios
+              .request({
+                  url: 'api/client',
+                  method: 'post',
+                  data: this.cliente,
+                baseURL: localStorage.getItem('baseURL'),
+                  headers: {
+                      'Authorization': 'Bearer '+localStorage.getItem('access_token')
+                  },
+                }).then(response => {
+                  console.log(response);
+                  this.$emit("dialog",false)
+                   
+                });
+        },
+        checkEditCliente(){
+            if(this.datosCliente.length!=0){
+                this.edit=true;
+                console.log("watch");
+                 console.log(this.datosCliente);
+                 this.cliente.name=this.datosCliente.name;
+                 this.cliente.lastname=this.datosCliente.lastname;
+                 this.cliente.email=this.datosCliente.email;
+                 this.cliente.rfc=this.datosCliente.rfc;
+                 this.cliente.email=this.datosCliente.email;
+                 this.cliente.movil=this.datosCliente.movil;
+                 this.cliente.firstname  = this.datosCliente.firstname;
+            }
+        }
+    },
+    watch:{
+    
+
+         datosCliente: function(){
+             if (this.datosCliente!='0') {
+                 this.edit=true;
+                 console.log("watch");
+                 console.log(this.datosCliente);
+                 this.cliente.name=this.datosCliente.name;
+                 this.cliente.lastname=this.datosCliente.lastname;
+                 this.cliente.email=this.datosCliente.email;
+                 this.cliente.rfc=this.datosCliente.rfc;
+                this.cliente.email=this.datosCliente.email;
+                 this.cliente.movil=this.datosCliente.movil;
+                 this.cliente.firstname  = this.datosCliente.firstname;
+             }
+
+         },
+        edit: function(){
+            if (this.edit==true) {
+                this.tituloModal= 'Editar cliente';
+            }else{
+                this.tituloModal= 'Registrar cliente';
+            }
         }
     }
+
   }
 </script>
