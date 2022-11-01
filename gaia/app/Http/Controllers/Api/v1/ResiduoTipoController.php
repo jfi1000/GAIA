@@ -15,7 +15,8 @@ class ResiduoTipoController extends Controller
      */
     public function index()
     {
-        //
+        // return ResiduoTipoResource::collection(Client::all());
+        return response()->json(ResiduoTipo::all());
     }
 
     /**
@@ -37,7 +38,7 @@ class ResiduoTipoController extends Controller
      */
     public function show(ResiduoTipo $residuoTipo)
     {
-        //
+        return response()->json($residuoTipo);
     }
 
     /**

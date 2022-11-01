@@ -24,7 +24,8 @@ Route::post('userlogin', [App\Http\Controllers\UserController::class, 'login']);
 Route::apiResource('client', ClientController::class);
 Route::apiResource('operation', OperationController::class);
 //->middleware('auth:sanctum');
-Route::apiResource('residuoTipo', ResiduoTipoController::class)->middleware('auth:sanctum');
+Route::apiResource('residuoTipo', ResiduoTipoController::class);
+//->middleware('auth:sanctum');
 Route::apiResource('residuostatus', ResiduoStatusController::class)->middleware('auth:sanctum');
 //Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
   //  return $request->user();
