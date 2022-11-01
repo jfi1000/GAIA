@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers\Api\v1;
+use App\Http\Requests\ClientCreateRequest;
 use App\Http\Resources\ClientResource;
 use App\Models\Client;
 use App\Http\Controllers\Controller;
@@ -22,7 +23,8 @@ class ClientController extends Controller
 
     public function index()
     {
-        return response()->json(Client::all());
+        // return response()->json(Client::all());
+        return ClientResource::collection(Client::all());
     }
 
     /**
@@ -31,15 +33,13 @@ class ClientController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(ClientCreateRequest $request)
     {
-
-        $client = Client::create($request->all());
-        return response()->json($client,201);
-
 
         // $client = Client::create($request->all());
         // return response()->json($client,201);
+
+        return new ClientResource(Client::create($request->all()));
 
     }
 
@@ -51,7 +51,8 @@ class ClientController extends Controller
      */
     public function show(Client $client)
     {
-        return response()->json($client);
+        // return response()->json($client);
+        return new ClientResource($client);
 
     }
 
@@ -65,7 +66,8 @@ class ClientController extends Controller
     public function update(Request $request,Client $client)
     {
         $client->update($request->all());//actualizamos
-        return response()->json($client);//retornamos el nuevo registro
+        // return response()->json($client);//retornamos el nuevo registro
+        return new ClientResource($client);
     }
 
     /**

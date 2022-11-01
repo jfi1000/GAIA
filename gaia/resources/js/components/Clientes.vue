@@ -134,8 +134,8 @@
                       'Authorization': 'Bearer '+localStorage.getItem('access_token')
                   },
                 }).then(response => {
-                  console.log("response de getClientes",response)
-                    this.clientes = response.data
+                  console.log("response de getClientes",response.data.data)
+                    this.clientes = response.data.data
                     //  this.comandancias = this.comandancias.data
                    
                 });
