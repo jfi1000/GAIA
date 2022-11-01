@@ -4,12 +4,15 @@ import es from "vuetify/es5/locale/es";
 import App from "./App.vue";
 import store from "./store";
 import router from "./router";
+import VueSweetalert2 from 'vue-sweetalert2';
+import 'sweetalert2/dist/sweetalert2.min.css';
 
 
 require('./bootstrap');
 
 window.Vue = require('vue').default;
 Vue.use(Vuetify);
+Vue.use(VueSweetalert2);
 /**
  * The following block of code may be used to automatically register your
  * Vue components. It will recursively scan this directory for the Vue

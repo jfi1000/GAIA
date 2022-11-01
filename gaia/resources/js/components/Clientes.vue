@@ -88,7 +88,7 @@
   export default {
     data () {
       return {
-        id_editar:'',
+        datosCliente:'',
         dialog: false,
         mdiMagnify: mdiMagnify,
         mdiPencil: mdiPencil,
@@ -143,7 +143,7 @@
       modalclose(x){
         // this.datosCliente='0';
         this.dialog=x;
-        // this.getClientes();
+         this.getClientes();
       },
       editClient(id){
         
@@ -156,7 +156,7 @@
                        'Authorization': 'Bearer '+localStorage.getItem('access_token')
                    },
                  }).then(response => {
-                   this.enviarDatos(response.data);
+                   this.enviarDatos(response.data.data);
                  });
      },
        enviarDatos(res){
@@ -166,7 +166,7 @@
                     if (this.datosCliente!='0') {
                         this.dialog=true;
                     }
-                console.log("datoscliente"+this.datosCliente);
+                console.log("datoscliente :"+this.datosCliente.length);
       }
      },
   }

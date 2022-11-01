@@ -125,7 +125,7 @@
         this.checkEditCliente();
     },
     props:{
-        id_editar:{
+        datosCliente:{
             required: false
         }
     },
@@ -145,11 +145,25 @@
                   },
                 }).then(response => {
                   console.log(response);
+                  this.$swal('Cliente registrado exitosamente');
                   this.$emit("dialog",false)
+                  this.clearDialog();
                    
+                }).catch((error)=>{
+                    this.$swal.fire(error.message);
                 });
         },
+        clearDialog(){
+                 this.cliente.name="";
+                 this.cliente.lastname="";
+                 this.cliente.email="";
+                 this.cliente.RFC="";
+                 this.cliente.email="";
+                 this.cliente.movil="";
+                 this.cliente.firstname  ="";
+        },
         checkEditCliente(){
+
             if(this.datosCliente.length!=0){
                 this.edit=true;
                 console.log("watch");
@@ -157,7 +171,7 @@
                  this.cliente.name=this.datosCliente.name;
                  this.cliente.lastname=this.datosCliente.lastname;
                  this.cliente.email=this.datosCliente.email;
-                 this.cliente.rfc=this.datosCliente.rfc;
+                 this.cliente.RFC=this.datosCliente.rfc;
                  this.cliente.email=this.datosCliente.email;
                  this.cliente.movil=this.datosCliente.movil;
                  this.cliente.firstname  = this.datosCliente.firstname;
@@ -165,8 +179,6 @@
         }
     },
     watch:{
-    
-
          datosCliente: function(){
              if (this.datosCliente!='0') {
                  this.edit=true;
