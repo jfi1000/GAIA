@@ -17,7 +17,11 @@ class OperationController extends Controller
      */
     public function index()
     {
+        // return response()->json(Operation::all());
         return OperationResource::collection(Operation::all());
+
+        // $operation = Operation::with('client')->get();
+        // return response()->json($operation);
 
     }
 

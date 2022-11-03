@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Api\v1;
 use App\Http\Requests\ClientCreateRequest;
+use App\Http\Requests\ClientUpdateRequest;
 use App\Http\Resources\ClientResource;
 use App\Models\Client;
 use App\Http\Controllers\Controller;
@@ -63,7 +64,7 @@ class ClientController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request,Client $client)
+    public function update(ClientUpdateRequest $request,Client $client)
     {
         $client->update($request->all());//actualizamos
         // return response()->json($client);//retornamos el nuevo registro

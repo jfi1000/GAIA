@@ -14,4 +14,10 @@ class ResiduoTipo extends Model
         'description',
     ];
 
+    //uno a muchos
+    public function operations()
+    {
+        return $this->hasMany(Operation::class,'id_client');
+    }                    
+
 }
