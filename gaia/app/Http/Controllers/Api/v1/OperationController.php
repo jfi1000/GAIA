@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api\v1;
 use App\Http\Controllers\Controller;
 use App\Models\Operation;
 use App\Http\Requests\OperationRequest;
+use App\Http\Requests\OperationUpdateRequest;
 use App\Http\Resources\OperationResource;
 use Illuminate\Http\Request;
 
@@ -44,7 +45,8 @@ class OperationController extends Controller
      */
     public function show(Operation $operation)
     {
-        return response()->json($operation);
+        // return response()->json($operation);
+        return new OperationResource($operation);
     }
 
     /**
@@ -54,7 +56,7 @@ class OperationController extends Controller
      * @param  \App\Models\Operation  $operation
      * @return \Illuminate\Http\Response
      */
-    public function update(OperationRequest $request, Operation $operation)
+    public function update(Request $request, Operation $operation)
     {
         $operation->update($request->all());//actualizamos
         return new OperationResource($operation);

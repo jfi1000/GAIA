@@ -14,7 +14,6 @@ class Operation extends Model
     protected $fillable = [
         'weight',
         'date_operation',
-        'id_status',
         'id_client',
         'id_residuo',
         'qr',
