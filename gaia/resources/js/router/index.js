@@ -4,27 +4,27 @@ Vue.use(VueRouter);
 
 const routes = [
     {
-      path: '/inicio',
+      path: '/w/inicio',
       name: 'inicio',
       component:  require('../components/dashboard').default
     },
     {
-      path: '/registro',
+      path: '/w/registro',
       name: 'registro',
       component:  require('../components/registro').default
     },
     {
-      path: '/seguimiento',
+      path: '/w/seguimiento',
       name: 'seguimiento',
       component:  require('../components/seguimiento').default
     },
     {
-        path: '/clientes',
+        path: '/w/clientes',
         name: 'clientes',
         component:  require('../components/clientes').default
     },
     {
-      path: '/configuracion',
+      path: '/w/configuracion',
       name: 'configuracion',
       component:  require('../components/configuracion').default
   },

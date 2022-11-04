@@ -11,7 +11,7 @@
   class="right-bar"
   >
   <v-list nav dark>
-    <v-list-item class="px-4" to="/inicio" link>
+    <v-list-item class="px-4" to="/w/inicio" link>
      <v-list-item-icon>
       <v-icon>
         {{mdiHome}}
@@ -19,7 +19,7 @@
      </v-list-item-icon>
       <v-list-item-title>Home</v-list-item-title>
     </v-list-item>
-    <v-list-item class="px-4" to="/registro" link>
+    <v-list-item class="px-4" to="/w/registro" link>
      <v-list-item-icon>
       <v-icon>
         {{mdiDeskphone}}
@@ -27,7 +27,7 @@
      </v-list-item-icon>
      <v-list-item-title>Registro</v-list-item-title>
     </v-list-item>
-    <v-list-item class="px-4" to="/seguimiento" link>
+    <v-list-item class="px-4" to="/w/seguimiento" link>
      <v-list-item-icon>
       <v-icon>
         {{mdiNoteCheckOutline}}
@@ -35,7 +35,7 @@
      </v-list-item-icon>
      <v-list-item-title>Seguimiento</v-list-item-title>
     </v-list-item>
-    <v-list-item class="px-4" to="/clientes" link>
+    <v-list-item class="px-4" to="/w/clientes" link>
      <v-list-item-icon>
       <v-icon>
         {{mdiAccount}}
@@ -43,7 +43,7 @@
      </v-list-item-icon>
      <v-list-item-title>Clientes</v-list-item-title>
     </v-list-item>
-    <v-list-item class="px-4x" to="/configuracion" link>
+    <v-list-item class="px-4x" to="/w/configuracion" link>
      <v-list-item-icon>
       <v-icon>
         {{mdiCog}}

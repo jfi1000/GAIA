@@ -30,6 +30,6 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/w/{any}', [App\Http\Controllers\HomeController::class, 'index'])->where('any','clientes|configuracion|registro|inicio|seguimiento')->name('home');
 Route::get('/ruta_pruebas', [App\Http\Controllers\HomeController::class, 'pruebas'])->name('pruebas');
 

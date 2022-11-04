@@ -125,6 +125,7 @@
       },
       getClientes(){
         console.log("entra a getclientes");
+        
          axios
               .request({
                   url: 'api/client/',

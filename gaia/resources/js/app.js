@@ -6,6 +6,8 @@ import store from "./store";
 import router from "./router";
 import VueSweetalert2 from 'vue-sweetalert2';
 import 'sweetalert2/dist/sweetalert2.min.css';
+//import { ZiggyVue } from 'ziggy';
+//import { Ziggy } from './ziggy';
 
 
 require('./bootstrap');
@@ -13,6 +15,7 @@ require('./bootstrap');
 window.Vue = require('vue').default;
 Vue.use(Vuetify);
 Vue.use(VueSweetalert2);
+//Vue.use(ZiggyVue, Ziggy);
 /**
  * The following block of code may be used to automatically register your
  * Vue components. It will recursively scan this directory for the Vue
@@ -44,6 +47,12 @@ Vue.use(VueSweetalert2);
 // const app = new Vue({
 //     el: '#app',
 // });
+Vue.config.productionTip = false;
+if (process.env.MIX_APP_ENV === "production") {
+    Vue.config.devtools = false;
+    Vue.config.debug = false;
+    Vue.config.silent = true;
+}
 
 new Vue({
     router,
