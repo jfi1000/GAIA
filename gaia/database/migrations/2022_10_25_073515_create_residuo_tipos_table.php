@@ -16,7 +16,7 @@ class CreateResiduoTiposTable extends Migration
         Schema::create('residuo_tipos', function (Blueprint $table) {
             $table->id();
             $table->string('type');
-            $table->string('description');
+            $table->string('description')->nullable();
             $table->timestamps();
             $table->softDeletes();
 

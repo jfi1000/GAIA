@@ -23,7 +23,7 @@ class CreateOperationsTable extends Migration
             // $table->foreign('id_status')->references('id')->on('residuo_status');
             $table->foreign('id_client')->references('id')->on('clients');
             $table->foreign('id_residuo')->references('id')->on('residuo_tipos');
-            $table->string('qr');
+            $table->string('qr')->nullable();
             $table->timestamps();
             $table->softDeletes();
 
