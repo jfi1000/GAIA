@@ -17,10 +17,10 @@ class CreateOperationsTable extends Migration
             $table->id();
             $table->decimal('weight',10,2);
             $table->date('date_operation');
-            $table->bigInteger('id_status')->unsigned();
+            // $table->bigInteger('id_status')->unsigned();
             $table->bigInteger('id_client')->unsigned();
             $table->bigInteger('id_residuo')->unsigned();
-            $table->foreign('id_status')->references('id')->on('residuo_status');
+            // $table->foreign('id_status')->references('id')->on('residuo_status');
             $table->foreign('id_client')->references('id')->on('clients');
             $table->foreign('id_residuo')->references('id')->on('residuo_tipos');
             $table->string('qr');
