@@ -64,10 +64,10 @@ class ClientController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(ClientUpdateRequest $request,Client $client)
+    public function update(Request $request,Client $client)
     {
         $client->update($request->all());//actualizamos
-        // return response()->json($client);//retornamos el nuevo registro
+        return response()->json($client);//retornamos el nuevo registro
         return new ClientResource($client);
     }
 

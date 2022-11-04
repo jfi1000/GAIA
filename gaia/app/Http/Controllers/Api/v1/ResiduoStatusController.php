@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api\v1;
 use App\Http\Controllers\Controller;
 use App\Models\ResiduoStatus;
 use Illuminate\Http\Request;
+use App\Http\Resources\ResiduoTipoResource;
 
 class ResiduoStatusController extends Controller
 {
@@ -15,7 +16,8 @@ class ResiduoStatusController extends Controller
      */
     public function index()
     {
-        //
+        return ResiduoTipoResource::collection(ResiduoStatus::all());
+        // return response()->json(ResiduoStatus::all());
     }
 
     /**

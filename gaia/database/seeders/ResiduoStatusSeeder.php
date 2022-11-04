@@ -16,16 +16,22 @@ class ResiduoStatusSeeder extends Seeder
     {
         DB::table('residuo_status')->insert([[
             'status' => 'status1',
+            'status_type' => 'operativo',
         ],[
             'status' => 'status2',
+            'status_type' => 'operativo',
         ],[
             'status' => 'status3',
+            'status_type' => 'operativo',
         ],[
             'status' => 'status4',
+            'status_type' => 'financiero',
         ],[
             'status' => 'status5',
+            'status_type' => 'financiero',
         ],[
             'status' => 'status6',
+            'status_type' => 'financiero',
         ]
         ]);
 

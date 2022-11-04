@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api\v1;
 use App\Http\Controllers\Controller;
 use App\Models\ResiduoTipo;
 use Illuminate\Http\Request;
+use App\Http\Resources\ResiduoTipoResource;
 
 class ResiduoTipoController extends Controller
 {
@@ -15,8 +16,7 @@ class ResiduoTipoController extends Controller
      */
     public function index()
     {
-        // return ResiduoTipoResource::collection(Client::all());
-        return response()->json(ResiduoTipo::all());
+        return ResiduoTipoResource::collection(ResiduoTipo::all());
     }
 
     /**
@@ -27,7 +27,7 @@ class ResiduoTipoController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        return new ResiduoTipoResource(ResiduoTipo::create($request->all()));
     }
 
     /**
@@ -38,7 +38,8 @@ class ResiduoTipoController extends Controller
      */
     public function show(ResiduoTipo $residuoTipo)
     {
-        return response()->json($residuoTipo);
+        return new ResiduoTipoResource($residuoTipo);
+
     }
 
     /**
@@ -50,7 +51,8 @@ class ResiduoTipoController extends Controller
      */
     public function update(Request $request, ResiduoTipo $residuoTipo)
     {
-        //
+        $residuoTipo->update($request->all());//actualizamos
+        return new ResiduoTipoResource($residuoTipo);
     }
 
     /**
@@ -61,6 +63,8 @@ class ResiduoTipoController extends Controller
      */
     public function destroy(ResiduoTipo $residuoTipo)
     {
-        //
+        $residuoTipo->delete();
+        return response()->json(null, 204);
+
     }
 }

@@ -22,7 +22,7 @@ class CreateClientsTable extends Migration
             $table->string('email')->nullable();
             $table->string('movil')->nullable();
             $table->string('razon_social')->nullable();
-            $table->string('type')->nullable()->comment('Tipo de persona moral / física')	;
+            $table->enum('type', ["Persona Moral", "Persona Física"])->nullable()->comment('Tipo de persona moral / física');// <-- Aquí el enum
             $table->timestamps();
             $table->softDeletes();
         });

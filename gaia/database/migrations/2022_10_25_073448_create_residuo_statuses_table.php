@@ -16,6 +16,7 @@ class CreateResiduoStatusesTable extends Migration
         Schema::create('residuo_status', function (Blueprint $table) {
             $table->id();
             $table->string('status');
+            $table->string('status_type')->nullable()->comment('financiero o operativo');// <-- Aquí el enum
             $table->timestamps();
             $table->softDeletes();
         });
