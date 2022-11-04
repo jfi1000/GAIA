@@ -128,7 +128,7 @@
         
          axios
               .request({
-                  url: 'api/client/',
+                  url: '../api/client/',
                   method: 'get',
                 baseURL: localStorage.getItem('baseURL'),
                   headers: {
@@ -150,7 +150,7 @@
         
          axios
                .request({
-                   url: 'api/client/'+ id,
+                   url: '../api/client/'+ id,
                    method: 'get',
                  baseURL: localStorage.getItem('baseURL'),
                    headers: {
