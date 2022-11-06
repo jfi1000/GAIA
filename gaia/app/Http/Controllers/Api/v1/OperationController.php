@@ -4,10 +4,12 @@ namespace App\Http\Controllers\Api\v1;
 
 use App\Http\Controllers\Controller;
 use App\Models\Operation;
+use App\Models\operation_status;
 use App\Http\Requests\OperationRequest;
 use App\Http\Requests\OperationUpdateRequest;
 use App\Http\Resources\OperationResource;
 use Illuminate\Http\Request;
+use SimpleSoftwareIO\QrCode\Facades\QrCode;
 
 class OperationController extends Controller
 {
@@ -34,7 +36,29 @@ class OperationController extends Controller
      */
     public function store(OperationRequest $request)
     {
-        return new OperationResource(Operation::create($request->all()));
+        //Insertamos el registro
+        $operation = new OperationResource(Operation::create($request->all()));
+        
+        //obtenemos el id del registro insertado
+        $insertedId = $operation->id;
+        
+        //Guardamos el status
+        // $status = new OperationResource(operation_status::create($request->all()));
+        $status = new operation_status;
+        $status->status_id = 1;
+        $status->operation_id = $insertedId;   
+        // $status->user_id = auth()->id();   
+        $status->user_id = 1;   
+        $status->save();
+    
+        // status_id // asiganar status por defecto
+        // operation_id //insertedId
+        // user_id // user auth
+        // $status = operation_status::create($request->all());
+        // return response()->json($status,201);
+
+        //retornamos el QR
+        return QrCode::size(300)->generate('A basic example of QR code!');
     }
 
     /**
