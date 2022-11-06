@@ -19,7 +19,7 @@
                             v-on="on"
                             class="mx-2"
                             fab
-                            color="indigo"
+                            color="lime darken-3"
                             >
                             <v-icon dark>
                             {{mdiPlus}}
@@ -61,7 +61,7 @@
              <template v-slot:item.id="{ item }">
                 <v-btn
                 icon
-                color="pink"
+                color="blue-grey darken-2"
                 @click="editClient(item.id)"
                 >
                 <v-icon>{{mdiPencil}}</v-icon>

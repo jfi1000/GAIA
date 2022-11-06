@@ -57,8 +57,9 @@
 
   <v-app-bar 
   app
+  dark
   clipped-left
-  color="lime lighten-5"
+  color="blue-grey darken-2"
   >
   <v-app-bar-nav-icon
   class="button-menu">
@@ -71,11 +72,10 @@
   <v-main>
 
     <!-- Provides the application the proper gutter -->
-    <v-container fluid
-    color="grey lighten-1">
+    <v-container fluid>
 
       <!-- If using vue-router -->
-      <router-view></router-view>
+      <router-view ></router-view>
     </v-container>
   </v-main>
 
@@ -128,4 +128,10 @@ import {
     },
   }
 </script>
+<style>
+.v-main__wrap {
+    
+    background-color: #FAFAFA;
+}
+</style>
 

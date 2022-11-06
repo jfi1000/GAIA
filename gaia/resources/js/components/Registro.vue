@@ -1,9 +1,9 @@
 <template>
-    <v-container>
-        <v-row>
+    <v-container >
            
-            <v-col cols="12" md="12">
-                <h3 class="titulo">Registro</h3>
+        <v-row color="blue-grey lighten-5">
+            <v-col cols="12" md="12" >
+                <h3 color="blue-grey darken-2" class="titulo">Registro</h3>
                 <hr>
                 <br>
             </v-col>
@@ -75,7 +75,7 @@
                       </v-row>
                     </v-col>     
                     <v-col class="d-flex" cols="12" sm="12">
-                      <v-btn block dark color="indigo"
+                      <v-btn block dark color="lime darken-3" :disable="guardado==true"
                       @click="guardarResiduo()">
                         Guardar
                       </v-btn>
@@ -92,6 +92,7 @@ import {
   export default {
     data () {
         return {
+          guardado:false,
           mdiCalendar: mdiCalendar,
         cat_tipo_residuos:[],
         cat_clientes:[],
@@ -102,7 +103,7 @@ import {
             id_client:'',
             id_status:1,
             weight:'',
-            date_operation:'',
+            date_operation:(new Date(Date.now() - (new Date()).getTimezoneOffset() * 60000)).toISOString().substr(0, 10)
 
         },
         weightRules: [
@@ -145,12 +146,13 @@ import {
                   },
                 }).then(response => {
                   console.log("response de residuoTipo",response.data.data)
-                    this.cat_tipo_residuos = response.data
+                    this.cat_tipo_residuos = response.data.data
                     
                    
                 });
         },
         guardarResiduo(){
+          this.guardado = true;
           axios
               .request({
                   url: '../api/operation',
@@ -163,11 +165,19 @@ import {
                 }).then(response => {
                   console.log(response);
                   this.$swal('Residuo registrado exitosamente');
+                  this.clearRegistro();
                    
                 }).catch((error)=>{
                     this.$swal.fire(error.message);
                 });
         },
+        clearRegistro(){
+          this.guardado=true;
+          this.residuo.id_client='';
+          this.residuo.id_residuo='';
+          this.residuo.weight='';
+          this.residuo.date_operation=(new Date(Date.now() - (new Date()).getTimezoneOffset() * 60000)).toISOString().substr(0, 10);
+        }
     }
     }
 </script>

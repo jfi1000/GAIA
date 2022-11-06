@@ -2,7 +2,7 @@
   <v-card>
     <v-tabs
       v-model="tab"
-      background-color="indigo"
+      background-color="lime darken-3"
       dark
     >
       <v-tab
