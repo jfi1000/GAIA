@@ -74,6 +74,29 @@
               required
             ></v-text-field>
           </v-col>
+          <v-col
+            cols="12"
+            md="4"
+          >
+            <v-text-field
+              v-model="cliente.razon_social"
+              label="Razon social"
+              required
+            ></v-text-field>
+          </v-col>
+          <v-col
+            cols="12"
+            md="4"
+          >
+          <v-select
+            :items="type_person"
+            item-text="name"
+            filled
+            label="Tipo de persona:"
+            dense
+            v-model="cliente.type"
+            ></v-select>
+          </v-col>
         </v-row>
       </v-container>
           <small>*indicates required field</small>
@@ -102,13 +125,18 @@
     data: () => ({
         tituloModal:'Registrar cliente',
       valid: false,
+      type_person:[
+            'PERSONA MORAL', 'PERSONA FISICA'
+          ],
       cliente:{
           name: '',
           firstname: '',
           lastname: '',
           RFC: '',
           movil: '',
-          email:''
+          email:'',
+          razon_social: '',
+          type:'',
 
       },
       edit:false,
@@ -161,6 +189,8 @@
                  this.cliente.email="";
                  this.cliente.movil="";
                  this.cliente.firstname  ="";
+                 this.cliente.razon_social="";
+                 this.cliente.type="";
         },
         checkEditCliente(){
 
