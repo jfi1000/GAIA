@@ -10,7 +10,8 @@ use App\Http\Requests\OperationUpdateRequest;
 use App\Http\Resources\OperationResource;
 use Illuminate\Http\Request;
 use SimpleSoftwareIO\QrCode\Facades\QrCode;
-
+use App\Mail\QrMailable;
+use Mail;
 class OperationController extends Controller
 {
     /**
@@ -56,6 +57,18 @@ class OperationController extends Controller
         // user_id // user auth
         // $status = operation_status::create($request->all());
         // return response()->json($status,201);
+        // $user = User::findOrFail($id);
+        // $user = "jf.izaguirre@gmail.com";
+
+        // Mail::send('emails.reminder', ['user' => $user], function ($m) use ($user) {
+        //     $m->from('hello@app.com', 'Your Application');
+        //     $m->to($user->email, $user->name)->subject('Your Reminder!');
+        // });
+        // Mail::to('your_email@gmail.com')->send(new QrMailable($mailData));
+
+        $correo = new QrMailable;
+        Mail::to('jf.izaguirre@gmail.com')->send($correo);
+
 
         //retornamos el QR
         return QrCode::size(300)->generate('A basic example of QR code!');
