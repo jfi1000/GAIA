@@ -11,16 +11,17 @@ class QrMailable extends Mailable
 {
     use Queueable, SerializesModels;
 
-    public $subject = "Información de Contacto";
+    public $subject = "Envió de QR";
+    public $name;
 
     /**
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct($name)
     {
-        //
+        $this->name =$name;
     }
 
     /**
