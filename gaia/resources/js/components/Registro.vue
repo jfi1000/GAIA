@@ -80,6 +80,39 @@
                         Guardar
                       </v-btn>
                     </v-col>
+    <v-dialog
+      v-model="dialog"
+      width="500"
+    >
+
+      <v-card>
+        <v-card-title class="text-h5 grey lighten-2">
+          QR para seguimiento
+        </v-card-title>
+
+        <v-card-text align="center">
+          <br>
+          <v-col class="d-flex" cols="12" sm="12">
+            <span v-html="QR"></span> 
+          </v-col>
+        </v-card-text>
+
+        <v-divider></v-divider>
+
+        <v-card-actions>
+          <v-spacer></v-spacer>
+          <v-btn
+            color="primary"
+            text
+            @click="dialog = false"
+          >
+            I accept
+          </v-btn>
+        </v-card-actions>
+      </v-card>
+    </v-dialog>
+                   
+    
         </v-row>
     </v-container>
 </template>
@@ -92,6 +125,8 @@ import {
   export default {
     data () {
         return {
+          QR:'',
+          dialog:false,
           guardado:false,
           mdiCalendar: mdiCalendar,
         cat_tipo_residuos:[],
@@ -166,6 +201,8 @@ import {
                   console.log(response);
                   this.$swal('Residuo registrado exitosamente');
                   this.clearRegistro();
+                  this.QR=response.data;
+                  this.dialog=true;
                    
                 }).catch((error)=>{
                     this.$swal.fire(error.message);
