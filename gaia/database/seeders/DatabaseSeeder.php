@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
 use App\Models\User;
+use App\Models\Client;
 
 class DatabaseSeeder extends Seeder
 {
@@ -36,13 +37,14 @@ class DatabaseSeeder extends Seeder
 
 
         
-        \App\Models\Client::factory(500)->create();
+        \App\Models\Client::factory(5)->create();
 
         $this->call([
             ResiduoTipoSeeder::class,
             ResiduoStatusSeeder::class
         ]);
 
-
+        \App\Models\Operation::factory(300)->create();
+        \App\Models\operation_status::factory(300)->create();
     }
 }

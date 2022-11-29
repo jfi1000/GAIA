@@ -27,7 +27,9 @@ Route::get('/', function () {
 });
 
 });
-
+Route::get('/mail', function () {
+    return view('email.qr');
+});
 Auth::routes();
 
 Route::get('/w/{any}', [App\Http\Controllers\HomeController::class, 'index'])->where('any','clientes|configuracion|registro|inicio|seguimiento')->name('home');

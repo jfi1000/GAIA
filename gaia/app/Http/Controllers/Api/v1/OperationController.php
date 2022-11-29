@@ -65,10 +65,10 @@ class OperationController extends Controller
         //     $m->to($user->email, $user->name)->subject('Your Reminder!');
         // });
         // Mail::to('your_email@gmail.com')->send(new QrMailable($mailData));
-
-        $correo = new QrMailable;
-        Mail::to('jf.izaguirre@gmail.com')->send($correo);
-
+        
+        $name = 'educba';
+        Mail:: to ('jf.izaguirre@gmail.com') -> send (new QrMailable ($name));
+        
 
         //retornamos el QR
         return QrCode::size(300)->generate('A basic example of QR code!');
