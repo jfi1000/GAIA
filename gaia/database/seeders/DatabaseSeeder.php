@@ -29,15 +29,15 @@ class DatabaseSeeder extends Seeder
 
         $user = User::create([
             'name' => 'pao suarez',
-            'email' => 'suarezbn@gmail.com',
+            'email' => 's@gmail.com',
             'password' => bcrypt('password')
         ]);
         // Asignación del rol
-        $user->assignRole('Operador');
+        $user->assignRole('Administrador');
 
 
         
-        \App\Models\Client::factory(5)->create();
+        \App\Models\Client::factory(100)->create();
 
         $this->call([
             ResiduoTipoSeeder::class,
