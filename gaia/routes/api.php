@@ -30,3 +30,7 @@ Route::apiResource('residuostatus', ResiduoStatusController::class)->middleware(
 //Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
   //  return $request->user();
 //});
+
+//consultas
+Route::get('operationall', [App\Http\Controllers\Api\v1\ConsultaController::class, 'getOperationAll']);
+Route::get('operationallp', [App\Http\Controllers\Api\v1\ConsultaController::class, 'getOperationAllP']);
