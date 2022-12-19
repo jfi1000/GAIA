@@ -6,6 +6,7 @@ use App\Http\Controllers\Api\v1\ClientController;
 use App\Http\Controllers\Api\v1\ResiduoStatusController;
 use App\Http\Controllers\Api\v1\ResiduoTipoController;
 use App\Http\Controllers\Api\v1\OperationController;
+use App\Http\Controllers\Api\v1\ConsultaController;
 
 /*
 |--------------------------------------------------------------------------
@@ -27,10 +28,8 @@ Route::apiResource('operation', OperationController::class);
 Route::apiResource('residuoTipo', ResiduoTipoController::class);
 //->middleware('auth:sanctum');
 Route::apiResource('residuostatus', ResiduoStatusController::class)->middleware('auth:sanctum');
-//Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-  //  return $request->user();
-//});
 
 //consultas
-Route::get('operationall', [App\Http\Controllers\Api\v1\ConsultaController::class, 'getOperationAll']);
-Route::get('operationallp', [App\Http\Controllers\Api\v1\ConsultaController::class, 'getOperationAllP']);
+Route::get('operationall', [ConsultaController::class, 'getOperationAll']);
+Route::get('operationallp', [ConsultaController::class, 'getOperationAllP']);
+Route::get('operation/search/{id}/{type}/{fecha1}/{fecha2}', [ConsultaController::class, 'getOperationSearch']);

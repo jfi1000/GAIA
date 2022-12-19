@@ -22,6 +22,7 @@ class CreateOperationStatusesTable extends Migration
             $table->foreign('operation_id')->references('id')->on('operations');
             $table->foreign('user_id')->references('id')->on('users');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

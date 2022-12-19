@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use App\Models\Client;
 use App\Models\ResiduoTipo;
+use App\Models\operation_status;
 
 class Operation extends Model
 {
@@ -21,11 +22,22 @@ class Operation extends Model
     //uno a muchos (inversa)
     public function client()
     {
-        return $this->belongsTo(Client::class,'id');
+        return $this->belongsTo(Client::class,'id_client');
     }                    
     public function residuo_tipo()
     {
-        return $this->belongsTo(ResiduoTipo::class,'id');
+        return $this->belongsTo(ResiduoTipo::class,'id_residuo');
     }                    
+    public function operation_status()
+    {
+        return $this->hasMany(operation_status::class,'operation_id','id'); 
+        // return $this->hasManyThrough(
+        //     ResiduoStatus::class,
+        //     User::class,
+        //     'operation_id',
+        //     'user_id',
+        //     'id'
+        // );
 
+    }
 }
