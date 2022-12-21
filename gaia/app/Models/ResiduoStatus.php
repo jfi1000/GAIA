@@ -11,8 +11,14 @@ class ResiduoStatus extends Model
     use HasFactory, SoftDeletes;
     protected $table = 'residuo_status';
     protected $fillable = [
-        'status',
+        'status', 
+        'status_type',
     ];
+    
+    public function operations_status()
+    {
+        return $this->BelongsToMany(operation_status::class,'id');
+    }                    
 
 
 }

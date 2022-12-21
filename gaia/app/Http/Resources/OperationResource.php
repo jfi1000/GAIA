@@ -23,7 +23,7 @@ class OperationResource extends JsonResource
             'id_client' => $this->id_client,
             'id_residuo' => $this->id_residuo,
             'qr' => $this->qr,
-            // 'cliente_name2' => ClientResource::collection($this->client),
+            //'cliente_name2' => ClientResource::collection($this->client),
             'created_at' => $this->created_at->format('d-m-Y'),
         ];
 

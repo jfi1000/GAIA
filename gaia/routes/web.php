@@ -17,14 +17,19 @@ use App\Http\Controllers\RoleController;
 // Route::get('/ruta_pruebas', function () {
 //     return view('index_gaia');
 // });
+Route::redirect('/', 'login');
 
 Route::post('/user', [App\Http\Controllers\UserController::class, 'store'])->name('user');
 
 Route::group(['middleware' => 'role:Administrador'], function () {
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view('welcome');
+// });
+
+
+
+
 
 });
 Route::get('/mail', function () {
