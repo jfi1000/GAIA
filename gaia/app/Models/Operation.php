@@ -31,13 +31,9 @@ class Operation extends Model
     public function operation_status()
     {
         return $this->hasMany(operation_status::class,'operation_id','id'); 
-        // return $this->hasManyThrough(
-        //     ResiduoStatus::class,
-        //     User::class,
-        //     'operation_id',
-        //     'user_id',
-        //     'id'
-        // );
 
     }
+
+
+
 }
