@@ -24,9 +24,9 @@
               <v-data-table
                 v-model="selected"
                 :headers="headers"
-                :items="desserts"
+                :items="operaciones"
                 :single-select="singleSelect"
-                item-key="name"
+                item-key="id_client"
                 show-select
                 class="elevation-1"
               >
@@ -49,6 +49,7 @@
   export default {
     data () {
       return {
+        operaciones:[],
         tab: null,
         items: [
           { tab: 'Registrados', content: 'Tab 1 Content' },
@@ -59,16 +60,14 @@
         selected: [],
         headers: [
           {
-            text: 'Dessert (100g serving)',
+            text: 'Cliente',
             align: 'start',
             sortable: false,
-            value: 'name',
+            value: 'id_client',
           },
-          { text: 'Calories', value: 'calories' },
-          { text: 'Fat (g)', value: 'fat' },
-          { text: 'Carbs (g)', value: 'carbs' },
-          { text: 'Protein (g)', value: 'protein' },
-          { text: 'Iron (%)', value: 'iron' },
+          { text: 'Residuo', value: 'id_residuo' },
+          { text: 'Estatus', value: 'id_status' },
+          
         ],
         desserts: [
           {
@@ -89,5 +88,24 @@
           }]
       }
     },
+    mounted(){
+      this.getOperaciones();
+    },
+    methods: {
+      getOperaciones(){
+        axios
+               .request({
+                   url: '../api/operationall/',
+                   method: 'get',
+                 baseURL: localStorage.getItem('baseURL'),
+                   headers: {
+                       'Authorization': 'Bearer '+localStorage.getItem('access_token')
+                   },
+                 }).then(response => {
+                   this.operaciones=response.data.data;
+                   console.log(response.data.data);
+                 });
+      }
+    }
   }
 </script>
