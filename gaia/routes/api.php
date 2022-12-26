@@ -32,6 +32,10 @@ Route::apiResource('residuostatus', ResiduoStatusController::class)->middleware(
 //consultas
 Route::get('operationall', [ConsultaController::class, 'getOperationAll']);
 Route::get('operationallp', [ConsultaController::class, 'getOperationAllP']);
-//api filtrado por estatus
+//api filtrado por último estatus fianciero 
 Route::get('operationallf/{status}', [ConsultaController::class, 'getOperationAllF']);
+//api filtrado por último estatus operativo 
+Route::get('operationallo/{status}', [ConsultaController::class, 'getOperationAllO']);
+
 Route::get('operation/search/{id}/{type}/{fecha1}/{fecha2}', [ConsultaController::class, 'getOperationSearch']);
+
