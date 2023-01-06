@@ -1,32 +1,26 @@
 <template>
   <v-card>
     <v-tabs
-      v-model="tab"
+      v-model="tabs"
       background-color="lime darken-3"
       dark
     >
       <v-tab
-        v-for="item in items"
-        :key="item.tab"
+            v-for="n in 3"
+            :key="n"
       >
-        {{ item.tab }}
+       Estatus {{ n }}
       </v-tab>
     </v-tabs>
-
-    <v-tabs-items v-model="tab">
-      <v-tab-item
-        v-for="item in items"
-        :key="item.tab"
-      >
-        <v-card flat>
-          <v-card-text>{{ item.content }}
-            <template>
+    <v-tabs-items v-model="tabs">
+      <v-tab-item>
+        <template>
               <v-data-table
                 v-model="selected"
                 :headers="headers"
                 :items="operaciones"
                 :single-select="singleSelect"
-                item-key="id_client"
+                item-key="id"
                 show-select
                 class="elevation-1"
               >
@@ -37,10 +31,95 @@
                     class="pa-3"
                   ></v-switch>
                 </template>
+                <template>
+                  <div class="text-center">
+                    <v-btn
+                      class="mx-2"
+                      fab
+                      dark
+                      small
+                      color="primary"
+                    >
+                      <v-icon dark>
+                        mdi-minus
+                      </v-icon>
+                    </v-btn>
+                    </div>
+                  </template>
+              </v-data-table>
+        </template>
+      </v-tab-item>
+      <v-tab-item>
+        <template>
+              <v-data-table
+                v-model="selected"
+                :headers="headers"
+                :items="operaciones"
+                :single-select="singleSelect"
+                item-key="id"
+                show-select
+                class="elevation-1"
+              >
+                <template v-slot:top>
+                  <v-switch
+                    v-model="singleSelect"
+                    label="Single select"
+                    class="pa-3"
+                  ></v-switch>
+                </template>
+                <template>
+                  <div class="text-center">
+                    <v-btn
+                      class="mx-2"
+                      fab
+                      dark
+                      small
+                      color="primary"
+                    >
+                      <v-icon dark>
+                        mdi-minus
+                      </v-icon>
+                    </v-btn>
+                    </div>
+                  </template>
               </v-data-table>
             </template>
-          </v-card-text>
-        </v-card>
+      </v-tab-item>
+      <v-tab-item>
+        <template>
+              <v-data-table
+                v-model="selected"
+                :headers="headers"
+                :items="operaciones"
+                :single-select="singleSelect"
+                item-key="id"
+                show-select
+                class="elevation-1"
+              >
+                <template v-slot:top>
+                  <v-switch
+                    v-model="singleSelect"
+                    label="Single select"
+                    class="pa-3"
+                  ></v-switch>
+                </template>
+                <template>
+                  <div class="text-center">
+                    <v-btn
+                      class="mx-2"
+                      fab
+                      dark
+                      small
+                      color="primary"
+                    >
+                      <v-icon dark>
+                        mdi-minus
+                      </v-icon>
+                    </v-btn>
+                    </div>
+                  </template>
+              </v-data-table>
+            </template>
       </v-tab-item>
     </v-tabs-items>
   </v-card>
@@ -49,8 +128,10 @@
   export default {
     data () {
       return {
-        operaciones:[],
-        tab: null,
+        operaciones1:[],
+        operaciones2:[],
+        operaciones3:[],
+        tabs: null,
         items: [
           { tab: 'Registrados', content: 'Tab 1 Content' },
           { tab: 'estatus 1', content: 'Tab 2 Content' },
@@ -63,29 +144,13 @@
             text: 'Cliente',
             align: 'start',
             sortable: false,
-            value: 'id_client',
+            value: 'client.name',
           },
-          { text: 'Residuo', value: 'id_residuo' },
-          { text: 'Estatus', value: 'id_status' },
+          { text: 'Residuo', value: 'residuo_tipo.description' },
+          //{ text: 'Estatus', value: 'id_status' },
           
         ],
-        desserts: [
-          {
-            name: 'Frozen Yogurt',
-            calories: 159,
-            fat: 6.0,
-            carbs: 24,
-            protein: 4.0,
-            iron: '1%',
-          },
-          {
-            name: 'Ice cream sandwich',
-            calories: 237,
-            fat: 9.0,
-            carbs: 37,
-            protein: 4.3,
-            iron: '1%',
-          }]
+        
       }
     },
     mounted(){
@@ -95,15 +160,15 @@
       getOperaciones(){
         axios
                .request({
-                   url: '../api/operationall/',
+                   url: '../api/operationallp',
                    method: 'get',
                  baseURL: localStorage.getItem('baseURL'),
                    headers: {
                        'Authorization': 'Bearer '+localStorage.getItem('access_token')
                    },
                  }).then(response => {
-                   this.operaciones=response.data.data;
-                   console.log(response.data.data);
+                   this.operaciones=response.data;
+                   console.log(response.data);
                  });
       }
     }
